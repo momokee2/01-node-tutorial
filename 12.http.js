@@ -1,12 +1,15 @@
 const http = require('http')
 
-
 const server = http.createServer((req, res) => {
-    // console.log('user hit the server') or
-    req.url === '/'
-    res.end('home page')
+    if(req.url === '/') {
+        res.end('Homepage')
+    } else if(req.url === '/about'){
+        res.end('About');
+    } else
+    res.end(`
+        <p>404</p>
+        <a href='/'>back home</a>
+    `)    
 })
 
-server.listen(5000, () => {
-    console.log('Server running port 5000');
-})
+server.listen(5000)
